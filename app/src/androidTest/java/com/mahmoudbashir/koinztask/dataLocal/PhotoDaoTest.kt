@@ -13,6 +13,7 @@ import kotlinx.coroutines.test.runBlockingTest
 import com.google.common.truth.Truth.assertThat
 import org.junit.*
 import org.junit.runner.RunWith
+import org.mockito.MockitoAnnotations
 
 @ExperimentalCoroutinesApi
 @RunWith(AndroidJUnit4::class)
@@ -28,6 +29,7 @@ class PhotoDaoTest {
 
     @Before
     fun setUp(){
+
         // this is not a real database
         database = Room.inMemoryDatabaseBuilder(
             ApplicationProvider.getApplicationContext(),
@@ -47,7 +49,7 @@ class PhotoDaoTest {
     }
 
     @Test
-    fun deleteShoppingItem() = runBlockingTest {
+    fun deletePhotoItem() = runBlockingTest {
         val photo = Photo(1,"1",1,0,2,"yes","123456","2234515","it is working good")
 
 
@@ -59,13 +61,9 @@ class PhotoDaoTest {
     }
 
 
-
     @After
     fun teardown(){
         database.close()
     }
-
-
-
 
 }
