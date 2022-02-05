@@ -12,7 +12,7 @@ import com.mahmoudbashir.koinztask.R
 import com.mahmoudbashir.koinztask.databinding.SingleItemPhotosBinding
 import com.mahmoudbashir.koinztask.model.Photo
 
-class photosAdapter : RecyclerView.Adapter<photosAdapter.ViewHolder>() {
+class photosAdapter(val interfacrIClicked: IClicked): RecyclerView.Adapter<photosAdapter.ViewHolder>() {
 
 
     private val differCallback = object : DiffUtil.ItemCallback<Photo>(){
@@ -44,9 +44,17 @@ class photosAdapter : RecyclerView.Adapter<photosAdapter.ViewHolder>() {
 
             val url = "https://farm${photoItem.farm}.static.flickr.com/${photoItem.server}/${photoItem.id}_${photoItem.secret}.jpg"
             Glide.with(holder.itemBinding.root).load(url).placeholder(R.drawable.ic_launcher_background).into(imgV)
+
+            imgV.setOnClickListener {
+                interfacrIClicked.onClickedItem(url)
+            }
         }
 
     }
 
     override fun getItemCount(): Int = differ.currentList.size
+
+    interface IClicked{
+        fun onClickedItem(photUrl:String)
+    }
 }

@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import com.mahmoudbashir.koinztask.R
 import com.mahmoudbashir.koinztask.adapters.photosAdapter
@@ -14,7 +15,7 @@ import com.mahmoudbashir.koinztask.ui.MainActivity
 import com.mahmoudbashir.koinztask.viewModel.appViewModel
 
 
-class HomeScreenFragment : Fragment() {
+class HomeScreenFragment : Fragment() , photosAdapter.IClicked{
 
     lateinit var homeBinding: FragmentHomeScreenBinding
 
@@ -58,11 +59,15 @@ class HomeScreenFragment : Fragment() {
     }
 
     private fun setUpRecyclerView() {
-        photoAdpt = photosAdapter()
+        photoAdpt = photosAdapter(this)
         homeBinding.recPhotosList.apply {
             setHasFixedSize(true)
             adapter = photoAdpt
         }
+    }
+
+    override fun onClickedItem(photUrl: String) {
+        Toast.makeText(context," url : $photUrl",Toast.LENGTH_SHORT).show()
     }
 
 }
