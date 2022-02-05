@@ -12,6 +12,7 @@ class appViewModel(val repo:Repository): ViewModel() {
 
     val data:MutableLiveData<List<Photo>> = MutableLiveData()
 
+
     fun getData() = viewModelScope.launch {
         repo.getPhotosDataFromServer().apply {
             if (body() != null)

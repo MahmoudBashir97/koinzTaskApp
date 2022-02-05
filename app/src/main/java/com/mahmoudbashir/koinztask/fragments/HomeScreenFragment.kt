@@ -81,7 +81,7 @@ class HomeScreenFragment : Fragment() , photosAdapter.IClicked{
     }
 
     private fun setUpRecyclerView() {
-        photoAdpt = photosAdapter(this)
+        photoAdpt = photosAdapter((activity as MainActivity),this)
         homeBinding.recPhotosList.apply {
             setHasFixedSize(true)
             adapter = photoAdpt
