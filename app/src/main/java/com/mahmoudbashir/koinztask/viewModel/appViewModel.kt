@@ -5,7 +5,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.mahmoudbashir.koinztask.model.Photo
-import com.mahmoudbashir.koinztask.model.Root
 import com.mahmoudbashir.koinztask.repository.Repository
 import kotlinx.coroutines.launch
 
