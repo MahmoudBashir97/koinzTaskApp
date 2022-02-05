@@ -9,13 +9,13 @@ import com.mahmoudbashir.koinztask.model.Photos
 interface photosDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertPhoto(ph:Photo)
+    fun insertPhoto(ph:Photo)
 
     @Query("SELECT * FROM photo_table ORDER by photoId ASC")
     fun getPhotosDataFromLocal():LiveData<List<Photo>>
 
 
     @Delete
-    suspend fun deletePhotoItem(ph:Photo)
+    fun deletePhotoItem(ph:Photo)
 
 }
