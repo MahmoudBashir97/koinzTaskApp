@@ -20,19 +20,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         mainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main)
 
-
         viewModel.getData()
-
-
-
-        mainBinding.getDataBtn.setOnClickListener {
-
-            viewModel.data.observe(this, { root ->
-                if (root != null) {
-                    Log.d(TAG, "PhotosResponse : success ")
-                }
-            })
-        }
 
     }
 }
