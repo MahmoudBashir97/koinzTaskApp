@@ -7,8 +7,9 @@ import com.mahmoudbashir.koinztask.model.Root
 import retrofit2.Response
 
 interface IRepository {
+
     suspend fun getPhotosDataFromServer(): Response<Root>
 
-    suspend fun insertPhotosToLocal(ph:Photos)
-    suspend fun getPhotosDataFromLocal():LiveData<List<Photo>>
+    suspend fun insertPhotosToLocal(ph:Photo)
+    fun getPhotosDataFromLocal():LiveData<List<Photo>>
 }

@@ -2,6 +2,7 @@ package com.mahmoudbashir.koinztask.fragments
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -13,14 +14,17 @@ import com.mahmoudbashir.koinztask.adapters.photosAdapter
 import com.mahmoudbashir.koinztask.databinding.FragmentHomeScreenBinding
 import com.mahmoudbashir.koinztask.ui.MainActivity
 import com.mahmoudbashir.koinztask.viewModel.appViewModel
+import org.koin.android.ext.android.inject
 
 
 class HomeScreenFragment : Fragment() , photosAdapter.IClicked{
 
     lateinit var homeBinding: FragmentHomeScreenBinding
 
-    lateinit var viewModel:appViewModel
+    val viewModel by inject<appViewModel>()
     lateinit var photoAdpt : photosAdapter
+
+
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -34,7 +38,7 @@ class HomeScreenFragment : Fragment() , photosAdapter.IClicked{
         // Inflate the layout for this fragment
         homeBinding = DataBindingUtil.inflate(inflater,
             R.layout.fragment_home_screen, container, false)
-        viewModel =(activity as MainActivity).viewModel
+
         return homeBinding.root
     }
 
@@ -43,17 +47,34 @@ class HomeScreenFragment : Fragment() , photosAdapter.IClicked{
 
 
         setUpRecyclerView()
-        gettingPhotoData()
-
+       // gettingPhotoData()
+       getPhotoListFromLocal()
 
     }
 
-    private fun gettingPhotoData() {
+  /*  private fun gettingPhotoData() {
         homeBinding.isLoading = true
         viewModel.data.observe(viewLifecycleOwner,{root->
             if (root != null){
+
+                viewModel.data.observe(viewLifecycleOwner,{
+                    photolist->
+                    if (photolist.isNotEmpty()){
+                     homeBinding.isLoading = false
+                     photoAdpt.differ.submitList(photolist)
+                    }
+                })
+            }
+        })
+    }*/
+
+    private fun getPhotoListFromLocal(){
+        homeBinding.isLoading = true
+        viewModel.getStoredPhotosData().observe(viewLifecycleOwner,{
+            photolist ->
+            if (photolist.isNotEmpty()){
                 homeBinding.isLoading = false
-                photoAdpt.differ.submitList(root.photos.photo)
+                photoAdpt.differ.submitList(photolist)
             }
         })
     }

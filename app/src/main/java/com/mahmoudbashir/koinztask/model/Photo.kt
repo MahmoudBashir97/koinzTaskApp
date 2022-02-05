@@ -1,11 +1,15 @@
 package com.mahmoudbashir.koinztask.model
 
 import androidx.room.ColumnInfo
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 
+@Entity(tableName = "photo_table")
 data class Photo(
     @ColumnInfo(name = "farm")
     val farm: Int,
-    @ColumnInfo(name = "id")
+    @PrimaryKey
+    @ColumnInfo(name = "photoId")
     val id: String,
     @ColumnInfo(name = "isfamily")
     val isfamily: Int,

@@ -15,7 +15,7 @@ val dataModule = module {
 
 
     fun providerDatabase(application: Application):photoDatabase{
-        return Room.databaseBuilder(application,photoDatabase::class.java,"UserDb")
+        return Room.databaseBuilder(application,photoDatabase::class.java,"PhotosDb")
             .fallbackToDestructiveMigration()
             .build()
     }
@@ -38,4 +38,3 @@ val mainViewModel = module {
     }
 
 }
-

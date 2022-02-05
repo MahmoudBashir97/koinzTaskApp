@@ -2,12 +2,10 @@ package com.mahmoudbashir.koinztask.room.db
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
-import androidx.room.TypeConverters
-import com.mahmoudbashir.koinztask.model.Photos
-import com.mahmoudbashir.koinztask.room.Converters
+import com.mahmoudbashir.koinztask.model.Photo
 
-@Database(entities = [Photos::class], version = 1, exportSchema = false)
-@TypeConverters(Converters::class)
+
+@Database(entities = [Photo::class], version = 1, exportSchema = false)
 abstract class photoDatabase : RoomDatabase(){
 
     abstract fun dao():photosDao
