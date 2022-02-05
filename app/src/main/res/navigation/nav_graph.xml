@@ -9,5 +9,23 @@
         android:id="@+id/homeScreenFragment"
         android:name="com.mahmoudbashir.koinztask.fragments.HomeScreenFragment"
         android:label="fragment_home_screen"
-        tools:layout="@layout/fragment_home_screen" />
+        tools:layout="@layout/fragment_home_screen" >
+        <action
+            android:id="@+id/action_homeScreenFragment_to_fullScreenViewFragment"
+            app:destination="@id/fullScreenViewFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/fullScreenViewFragment"
+        android:name="com.mahmoudbashir.koinztask.fragments.FullScreenViewFragment"
+        android:label="fragment_full_screen_view"
+        tools:layout="@layout/fragment_full_screen_view">
+        <argument android:name="photoUrl"
+            app:nullable="false"
+            app:argType="string"/>
+
+    </fragment>
 </navigation>

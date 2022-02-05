@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
+import androidx.navigation.fragment.findNavController
 import com.mahmoudbashir.koinztask.R
 import com.mahmoudbashir.koinztask.adapters.photosAdapter
 import com.mahmoudbashir.koinztask.databinding.FragmentHomeScreenBinding
@@ -88,7 +89,8 @@ class HomeScreenFragment : Fragment() , photosAdapter.IClicked{
     }
 
     override fun onClickedItem(photUrl: String) {
-        Toast.makeText(context," url : $photUrl",Toast.LENGTH_SHORT).show()
+        Log.d("urls : ",photUrl)
+        findNavController().navigate(HomeScreenFragmentDirections.actionHomeScreenFragmentToFullScreenViewFragment(photUrl))
     }
 
 }
