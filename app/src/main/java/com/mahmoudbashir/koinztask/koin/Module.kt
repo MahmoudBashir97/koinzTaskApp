@@ -27,7 +27,7 @@ val dataModule = module {
     single { providerDatabase(androidApplication()) }
     single { providerDao(get()) }
     single { RetrofitInstance() }
-    single { Repository(get()) }
+    single { Repository(get(),get()) }
 
 }
 
