@@ -3,11 +3,11 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="#777777"
+    android:background="#979797"
     android:padding="@dimen/_5sdp">
     <ImageView
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_120sdp"
+        android:layout_height="@dimen/_110sdp"
         android:src="@drawable/add_img"
         android:scaleType="fitXY"/>
 
