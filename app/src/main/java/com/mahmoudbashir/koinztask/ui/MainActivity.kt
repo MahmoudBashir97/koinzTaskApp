@@ -22,5 +22,6 @@ class MainActivity : AppCompatActivity() {
         //todo get Data From api Server by viewModel once MainActivity created
         viewModel.getData()
 
+
     }
 }
