@@ -11,15 +11,15 @@ import org.koin.android.ext.android.inject
 
 class MainActivity : AppCompatActivity() {
 
-    private  val TAG = "MainActivity"
-
     lateinit var mainBinding: ActivityMainBinding
+
     val viewModel by inject<appViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         mainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main)
 
+        //todo get Data From api Server by viewModel once MainActivity created
         viewModel.getData()
 
     }

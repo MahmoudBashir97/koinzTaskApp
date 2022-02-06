@@ -12,7 +12,8 @@ class appViewModel(val repo:Repository): ViewModel() {
 
     val data:MutableLiveData<List<Photo>> = MutableLiveData()
 
-
+    //todo get data from Api server with Retrofit ,
+    // Repository pattern , and inserting it to room db
     fun getData() = viewModelScope.launch {
         repo.getPhotosDataFromServer().apply {
             if (body() != null)
@@ -24,11 +25,12 @@ class appViewModel(val repo:Repository): ViewModel() {
         }
     }
 
+
     fun insertDataToLocal(ph: Photo) = viewModelScope.launch {
         repo.insertPhotosToLocal(ph)
     }
 
 
-   fun getStoredPhotosData():LiveData<List<Photo>> = repo.getPhotosDataFromLocal()
+    fun getStoredPhotosData():LiveData<List<Photo>> = repo.getPhotosDataFromLocal()
 
 }

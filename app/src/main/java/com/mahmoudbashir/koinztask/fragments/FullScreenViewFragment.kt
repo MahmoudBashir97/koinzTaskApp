@@ -2,6 +2,7 @@ package com.mahmoudbashir.koinztask.fragments
 
 import android.content.Context
 import android.os.Bundle
+import android.os.NetworkOnMainThreadException
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -29,6 +30,8 @@ class FullScreenViewFragment : Fragment() {
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
+
+        //todo receiving photo Url to be attached to ImageView
         photoUrl = args.photoUrl
     }
 
@@ -40,8 +43,6 @@ class FullScreenViewFragment : Fragment() {
         fullBinding = DataBindingUtil.inflate(inflater,
             R.layout.fragment_full_screen_view, container, false)
 
-        //hideSystemBars()
-
 
         return fullBinding.root
     }
@@ -49,13 +50,20 @@ class FullScreenViewFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        fullBinding.apply {
-            Glide.with((activity as MainActivity)).load(photoUrl).into(photoView)
+
+        try {
+            //todo attach photoUrl to ImageView by Using Glide Library
+            fullBinding.apply {
+                Glide.with((activity as MainActivity)).load(photoUrl).into(photoView)
+            }
+        }catch (e:NetworkOnMainThreadException){
+            e.message
         }
 
         doFullScreenForImgV()
     }
 
+    //todo applying FullScreen to ImageView
     private fun doFullScreenForImgV() {
         if (isImageFitToScreen) {
             isImageFitToScreen = false

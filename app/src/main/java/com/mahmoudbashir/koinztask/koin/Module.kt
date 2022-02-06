@@ -13,7 +13,6 @@ import org.koin.dsl.module
 
 val dataModule = module {
 
-
     fun providerDatabase(application: Application):photoDatabase{
         return Room.databaseBuilder(application,photoDatabase::class.java,"PhotosDb")
             .fallbackToDestructiveMigration()

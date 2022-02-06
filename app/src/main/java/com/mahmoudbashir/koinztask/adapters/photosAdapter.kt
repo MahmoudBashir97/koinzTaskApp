@@ -63,7 +63,6 @@ class photosAdapter(val context:Context,val interfacrIClicked: IClicked): Recycl
     }
 
 
-
     override fun getItemViewType(position: Int): Int {
 
         if (position != 0 && position % 6 == 0)

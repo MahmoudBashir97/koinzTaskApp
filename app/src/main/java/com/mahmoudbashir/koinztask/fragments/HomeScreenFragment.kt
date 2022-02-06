@@ -1,13 +1,11 @@
 package com.mahmoudbashir.koinztask.fragments
 
-import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.fragment.findNavController
 import com.mahmoudbashir.koinztask.R
@@ -22,15 +20,10 @@ class HomeScreenFragment : Fragment() , photosAdapter.IClicked{
 
     lateinit var homeBinding: FragmentHomeScreenBinding
 
+    //todo initializing viewModel by inject (koin Di)
     val viewModel by inject<appViewModel>()
     lateinit var photoAdpt : photosAdapter
 
-
-
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -48,27 +41,12 @@ class HomeScreenFragment : Fragment() , photosAdapter.IClicked{
 
 
         setUpRecyclerView()
-       // gettingPhotoData()
        getPhotoListFromLocal()
 
     }
 
-  /*  private fun gettingPhotoData() {
-        homeBinding.isLoading = true
-        viewModel.data.observe(viewLifecycleOwner,{root->
-            if (root != null){
 
-                viewModel.data.observe(viewLifecycleOwner,{
-                    photolist->
-                    if (photolist.isNotEmpty()){
-                     homeBinding.isLoading = false
-                     photoAdpt.differ.submitList(photolist)
-                    }
-                })
-            }
-        })
-    }*/
-
+    //todo here we are getting Photo data , stored in local (room db)
     private fun getPhotoListFromLocal(){
         homeBinding.isLoading = true
         viewModel.getStoredPhotosData().observe(viewLifecycleOwner,{
@@ -80,6 +58,7 @@ class HomeScreenFragment : Fragment() , photosAdapter.IClicked{
         })
     }
 
+    //todo here we initializing photoAdapter , and work on recyclerview
     private fun setUpRecyclerView() {
         photoAdpt = photosAdapter((activity as MainActivity),this)
         homeBinding.recPhotosList.apply {
@@ -88,6 +67,7 @@ class HomeScreenFragment : Fragment() , photosAdapter.IClicked{
         }
     }
 
+    //todo clicking on One Item then navigate to FullScreen Fragment to view Full Image.
     override fun onClickedItem(photUrl: String) {
         Log.d("urls : ",photUrl)
         findNavController().navigate(HomeScreenFragmentDirections.actionHomeScreenFragmentToFullScreenViewFragment(photUrl))
